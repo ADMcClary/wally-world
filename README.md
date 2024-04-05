@@ -1,3 +1,7 @@
+First, download nodejs [Go to prebuilt installer, get LTS version, select the right system in the dropdown](https://nodejs.org/en/download/)
+Second, download [git](https://git-scm.com/downloads)
+Third, you can download code from your github
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
