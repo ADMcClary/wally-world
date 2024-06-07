@@ -1,10 +1,32 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { link } from "fs";
+
+const navigationlinks = ["Home", "Food", "Clothing", "Electronics", "Toys"];
+function Navigationhandler({ href, text, router }) {
+  const isactive = router.aspath === (href === "/home" ? "/" : href);
+  return (
+    <Link
+      href={href === "/home" ? "/" : href}
+      passHref
+      className={`${
+        isactive && "active:text-yellow-200"
+      } block hover:text-yellow-200`}
+    >
+      {text}
+    </Link>
+  );
+}
+
 function Navbar() {
+  const router = useRouter();
   return (
     <nav className=" bg-sky-300">
       <div className="flex items-center justify-between mx-auto flex-wrap">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 pl-10">
           <Image
             src="/Walmart_Spark.svg.png"
             alt="logo"
@@ -17,25 +39,18 @@ function Navbar() {
           </span>
         </div>
         <div className="w-auto pl-10 block ">
-          <ul className="flex flex-row p-4 space-x-8">
-            <li>
-              <a aria-current="page" className="block hover:text-yellow-200">
-                Home
-              </a>
-            </li>
-            <li>
-              <a className="block hover:text-yellow-200">Food</a>
-            </li>
-            <li>
-              <a className="block hover:text-yellow-200">Clothing</a>
-            </li>
-            <li>
-              <a className="block hover:text-yellow-200">Electronics</a>
-            </li>
-            <li>
-              <a className="block hover:text-yellow-200">Toys</a>
-            </li>
-          </ul>
+          <div className="flex flex-row p-4 space-x-8">
+            {navigationlinks.map((link) => {
+              return (
+                <Navigationhandler
+                  key={link}
+                  href={`/${link}`}
+                  text={link}
+                  router={router}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </nav>
